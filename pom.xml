@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.shuidi</groupId>
-    <artifactId>springboot</artifactId>
+    <artifactId>mycode</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>springboot</name>
+    <name>mycode</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -314,7 +314,7 @@
     </dependencies>
 
     <build>
-        <finalName>springboot</finalName>
+        <finalName>mycode</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
