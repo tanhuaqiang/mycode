@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace，id自己给的值
+    parameterType：必须写Mapper接口中定义的方法的参数类型
+ -->
+<mapper namespace="user">
+
+    <!-- 定义resultMap -->
+    <resultMap type="com.daling.bean.User" id="userMap">
+        <id  column="id" property="id"/>
+        <result column="name" property="name"/>
+
+        <!-- 配置关联的集合属性 -->
+        <collection property="ordersList" ofType="com.daling.bean.Orders">
+            <id column="oid" property="oid"/>
+            <!-- 其他属性 -->
+            <result column="date" property="date"/>
+            <result column="total" property="total"/>
+            <result column="desc" property="desc"/>
+
+        </collection>
+    </resultMap>
+
+    <!-- 进行查询操作 -->
+    <select id="selUser" parameterType="java.lang.Integer" resultMap="userMap">
+
+        select u.id,name,o.oid,o.date,total,o.desc
+	 	from t_user u  inner join orders o
+	 	on o.uid=u.id where u.id=#{id}
+    </select>
+
+    <select id="selAllUserOrders" resultMap="userMap">
+        select u.id,name,o.oid,o.date,total,o.desc
+	 	from t_user u  inner join orders o
+	 	on o.uid=u.id
+    </select>
+
+
+</mapper>
+
+

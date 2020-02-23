@@ -1,0 +1,114 @@
+#设置日期的json格式
+spring:
+  application:
+    name: springboot
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+#时间设置
+    time-zone: Asia/Chongqing
+
+#激活选中的yaml文件
+  profiles:
+    active: test
+
+  freemarker:
+    prefer-file-system-access: false
+    cache: false
+    charset: UTF-8
+
+  datasource:
+    url: jdbc:mysql://localhost/spring_boot_demo?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456789
+    driver-class-name: com.mysql.jdbc.Driver
+
+  cahce:
+    #type: ehcache
+    ehcache:
+      config: classpath:config/ehcache.xml
+
+  # JPA
+  jpa:
+    hibernate:
+      ddl-auto: update
+    #显示 sql 语句
+    show-sql: true
+
+  #rabbitmq配置
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    virtual-host: /
+    username: tanhq
+    password: thq!789123
+#    publisher-confirms: true
+
+# sentinel dashboard
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+
+#32位字符串
+#roncoo:
+#  secret: ${random.value}
+#
+##9位随机数,左边的roncoo.number可以随便取名字
+#  number: ${random.int}
+#
+#  name: tanhq
+#  desc: ${roncoo.name} is a hero
+
+
+# jetcache缓存全局配置
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson
+    otherCacheName:
+      type: xxx
+      keyConverter: yyy
+  remote:
+    default:
+      type: redis
+      keyConvertor: fastjson
+      valueEncoder: java
+      valueDecoder: java
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: 127.0.0.1
+      port: 6379
+
+
+#日志配置
+#logging:
+#  config: classpath:logback-roncoo.xml
+
+
+---
+spring:
+  profiles: test
+
+server:
+  port: 8080
+
+---
+spring:
+  profiles: dev
+
+server:
+  port: 8081
+
+---
+spring:
+  profiles: prod
+
+server:
+  port: 8082

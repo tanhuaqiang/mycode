@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace，id自己给的值
+    parameterType：必须写Mapper接口中定义的方法的参数类型
+ -->
+<!--
+	 使用dao的代理开发模式的时候：
+	1 namespace必须和Mapper接口的完全限定名一样
+	2 对应的数据库操作的id必须和接口中抽象方法的名字一样
+	3 parameterType:必须和接口抽象方法参数类型一致
+	4 resultType：必须和接口抽象方法的返回值类型一致
+ -->
+<mapper namespace="orders">
+
+    <!-- 定义resultMap -->
+    <resultMap type="com.daling.bean.Orders" id="ordersUsers">
+        <!-- 描述id -->
+        <id column="oid" property="oid"/>
+        <!-- 其他简单属性 -->
+        <result column="date" property="date"/>
+        <result column="desc" property="desc"/>
+        <result column="total" property="total"/>
+        <!-- 关联的属性 -->
+        <association property="user" javaType="com.daling.bean.User">
+            <result column="name" property="name"/>
+        </association>
+    </resultMap>
+
+
+    <!-- 进行查询操作 -->
+    <select id="loadOrdersUsers"  resultMap="ordersUsers"
+            parameterType="java.lang.Integer">
+	 	select oid,o.date,total,o.desc,u.name
+	 	from orders o inner join t_user u
+	 	on o.uid=u.id where o.oid=#{oid}
+	 </select>
+
+
+</mapper>
+
+

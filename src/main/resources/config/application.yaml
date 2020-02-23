@@ -1,0 +1,9 @@
+#32位字符串
+roncoo:
+  secret: ${random.value}
+
+#9位随机数,左边的roncoo.number可以随便取名字
+  number: ${random.int}
+
+  name: tanhq
+  desc: ${roncoo.name} is a herooo

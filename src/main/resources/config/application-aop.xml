@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 开启注解扫描-->
+    <context:component-scan base-package="com.daling"></context:component-scan>
+
+    <!--aop自动代理-->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <!--声明一个需要织入到虚拟切面的切面-->
+    <!--<bean id="logAspect" class="com.daling.config.springAop.aop.aspect.LoginAspect"></bean>-->
+
+    <aop:config>
+        <!--声明切入点，id用来标记这个切入点； expresssion: 满足expression中的方法调用之后，就会去进行切面操作，类似于触发了切面
+            第一个* 代表返回任意类型 ，
+            第一个.. 所有的子包
+            * 方法名任意
+            第二个.. 表示方法的参数是任意数量和类型
+        -->
+        <aop:pointcut id="logPointcut" expression="execution(* com.daling..*(..))" ></aop:pointcut>
+
+        <!--
+        简单说就是，只要com.daling.config.springAop.aop.service这个包中的所有子包，以及包下的所有类的任意一个函数被调用，不管你的返回值是什么，都会触发开关，
+        我就会去执行切面，也就是辅助功能，但是辅助功能是什么呢，就是下面两句：
+        -->
+        <aop:aspect id="" ref="logAspect">
+            <aop:before method="before" pointcut-ref="logPointcut"></aop:before>
+            <aop:after method="after" pointcut-ref="logPointcut"></aop:after>
+            <aop:after-returning method="afterReturn" returning="boolean" pointcut-ref="logPointcut"></aop:after-returning>
+            <aop:after-throwing method="afterThrow" pointcut-ref="logPointcut"></aop:after-throwing>
+        </aop:aspect>
+    </aop:config>
+</beans>

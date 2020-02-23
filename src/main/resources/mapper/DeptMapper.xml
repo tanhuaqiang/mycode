@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace，id自己给的值
+    parameterType：必须写Mapper接口中定义的方法的参数类型
+ -->
+<mapper namespace="dept">
+    <insert id="saveDept" parameterType="com.daling.bean.Dept">
+        insert into dept values(null,#{dname},#{ddesc})
+
+        <!-- 获得增加的记录 -->
+        <selectKey keyColumn="did" keyProperty="did" resultType="java.lang.Integer">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <!-- 删除部门  -->
+    <delete id="delDept" parameterType="java.lang.Integer">
+        delete from dept where did=#{did}
+    </delete>
+
+    <!-- 修改部门  -->
+    <update id="updateDept" parameterType="com.daling.bean.Dept">
+        update dept set dname=#{dname},ddesc=#{ddesc} where did=#{did}
+    </update>
+
+    <!-- 查询某个部门  -->
+    <select id="selDept" parameterType="java.lang.Integer" resultType="com.daling.bean.Dept">
+        select * from dept where did=#{did}
+    </select>
+
+    <!-- 查询所有部门  -->
+    <select id="selAllDept" resultType="com.daling.bean.Dept">
+        select * from dept
+    </select>
+
+
+    <!-- 查询有多少个部门 -->
+    <select id="selectCount" resultType="java.lang.Long">
+        select count(did) from dept
+    </select>
+</mapper>
+
+

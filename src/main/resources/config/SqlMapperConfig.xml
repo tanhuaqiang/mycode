@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--<environments default="helloMybatis">-->
+        <!--<environment id="helloMybatis">-->
+            <!--&lt;!&ndash; 使用jdbc进行事务管理 &ndash;&gt;-->
+            <!--<transactionManager type="JDBC"/>-->
+            <!--&lt;!&ndash; 配置数据库的数据库连接池 &ndash;&gt;-->
+            <!--<dataSource type="POOLED">-->
+                <!--&lt;!&ndash; 连接数据库的字符串信息 &ndash;&gt;-->
+                <!--<property name="driver" value="com.mysql.jdbc.Driver"/>-->
+                <!--<property name="url" value="jdbc:mysql://localhost:3306/test"/>-->
+                <!--<property name="username" value="root"/>-->
+                <!--<property name="password" value="111111"/>-->
+            <!--</dataSource>-->
+        <!--</environment>-->
+    <!--</environments>-->
+
+    <!--<mappers>-->
+    <!--&lt;!&ndash; 加载映射文件（xxxMapper.xml） IDEA不会编译src的Java目录下的xml文件，所以在Mybatis的配置文件中找不到xml文件 &ndash;&gt;-->
+    <!--&lt;!&ndash;<mapper resource="com/daling/dao/DeptMapper.xml"/>&ndash;&gt;-->
+    <!--<mapper resource="mapper/*.xml" />-->
+    <!--</mappers>-->
+
+
+</configuration>

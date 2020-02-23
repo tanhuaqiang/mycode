@@ -1,0 +1,7 @@
+<beans>
+    <bean id="userDao" class="com.dalingjia.spring.dao.impl.UserDaoImpl"></bean>
+
+    <bean id="userService" class="com.dalingjia.spring.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+</beans>
