@@ -1,20 +1,15 @@
 package com.daling.aop;
 
 import com.daling.bean.DLoginUser;
-import com.daling.platform.util.Jackson2Helper;
 import com.daling.util.web.WebUtil;
-import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.PrintWriter;
-import java.util.Map;
 
 /**
  * 登录用户的拦截器
