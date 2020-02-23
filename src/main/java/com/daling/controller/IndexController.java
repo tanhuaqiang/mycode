@@ -145,7 +145,7 @@ public class IndexController {
         Long start = System.currentTimeMillis();
         Map<String, Object> map = new HashMap<>();
         map.put("age", age);
-        map.put("value", "hello springboot");
+        map.put("value", "hello mycode");
         map.put("secret", secret);
         map.put("number", number);
         map.put("name", name);
@@ -181,7 +181,7 @@ public class IndexController {
     public void get(@RequestParam String name, HttpServletResponse response, HttpServletRequest request){
         Map<String, Object> map = new HashMap<>();
         map.put("name", name);
-        map.put("value", "hello springboot");
+        map.put("value", "hello mycode");
         map.put("secret", secret);
         map.put("number", number);
         map.put("desc", desc);

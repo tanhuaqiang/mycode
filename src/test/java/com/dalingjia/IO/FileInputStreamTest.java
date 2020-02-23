@@ -18,7 +18,7 @@ public class FileInputStreamTest {
 		//创建字节输出流，用来保存文件
 		OutputStream out = null;
 		try {
-			in = new FileInputStream("/Users/tanhq/Downloads/A要看的书2/springboot/src/main/java/com/dalingjia/bean/User.java");
+			in = new FileInputStream("/Users/tanhq/Downloads/A要看的书2/mycode/src/main/java/com/dalingjia/bean/User.java");
 			out = new FileOutputStream("copyFile.txt");
 			//创建一个长度为1024个字节的数组来读取文件
 			byte[] buffer = new byte[1024];

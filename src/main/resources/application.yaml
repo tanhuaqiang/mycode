@@ -1,7 +1,7 @@
 #设置日期的json格式
 spring:
   application:
-    name: springboot
+    name: mycode
 
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss

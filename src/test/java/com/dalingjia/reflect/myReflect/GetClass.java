@@ -44,7 +44,7 @@ public class GetClass {
         }
     }
 
-    //读取配置文件/Users/tanhq/gitLab/springboot/src/test/java/reflect.properties
+    //读取配置文件/Users/tanhq/gitLab/mycode/src/test/java/reflect.properties
     public String getValue(String key){
         Properties properties = new Properties();
         try {
