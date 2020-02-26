@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * @Date 2019/11/23 下午2:11
  * @Version 1.0
  **/
-public class ListOper {
+public class ListOperator {
 
     private static List<User> list = new ArrayList<>();
 
@@ -22,7 +22,8 @@ public class ListOper {
         list.add(new User(2, "xiaohong", 33, new BigDecimal(20000), 2));
         list.add(new User(3, "maoge", 26, new BigDecimal(10000), 3));
         list.add(new User(4, "fanfan", 27, new BigDecimal(30000), 1));
-        list.add(new User(5, "suning", 25, new BigDecimal(50000), 2));
+        list.add(new User(5, "laomao", 25, new BigDecimal(50000), 2));
+        list.add(new User(6, "lining", 26, new BigDecimal(60000), 2));
         list.addAll(new ArrayList<>());
     }
 
@@ -81,8 +82,11 @@ public class ListOper {
         Integer minAge = list.stream().map(User::getAge).min(Integer::compareTo).get();
         Integer maxAge = list.stream().map(user -> user.getAge()).max(Integer::compareTo).get();
 
-        //6,list排序,多字段排序，根据grade，年龄，账号排序
-        list.sort(Comparator.comparing(User::getGrade).thenComparing(User::getAge).thenComparing(User::getAccount));
+        //6,list排序,多字段排序，//reversed() 方法放中间导致前面2个字段都是按照降序排序
+        //参考链接：https://www.cnblogs.com/liululee/p/10935244.html
+        list.sort(Comparator.comparing(User::getAge).thenComparing(User::getGrade).reversed().thenComparing(User::getAccount));
+        list.stream().forEach(user -> System.out.println(user));
+        System.out.println("***********************");
 
         //7,list去重
         List<Integer> idList = new ArrayList<Integer>();
@@ -95,8 +99,10 @@ public class ListOper {
         //8, map转list
         List<User> mapToList = map3.entrySet().stream().map(e -> e.getValue()).collect(Collectors.toList());
         System.out.println(mapToList);
-
-
+        System.out.println("------------------");
+        //按照年龄升序
+        list.sort(Comparator.comparingInt(User::getAge));
+        list.stream().forEach(user -> System.out.println(user));
     }
 }
 
