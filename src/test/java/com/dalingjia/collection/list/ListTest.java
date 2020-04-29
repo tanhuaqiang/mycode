@@ -41,8 +41,16 @@ public class ListTest {
 
 		List secondList = Lists.newArrayList();
 		if(CollectionUtils.isNotEmpty(Arrays.asList(strings))){
-			System.out.println("jieh");
+			System.out.println("急急急");
 		}
+	}
+
+	@Test
+	public void test2(){
+		List<Integer> list = Lists.newArrayList(123, 3434, 212, 43423, 398, 980);
+		List<Integer> temp = Lists.newArrayList(3434, 398, 980, 42);
+		list.removeAll(temp);
+		System.out.println(list);
 	}
 
 }

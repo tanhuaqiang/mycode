@@ -1,10 +1,13 @@
 package com.dalingjia.LambdaStream;
 
+import org.junit.Test;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -35,18 +38,22 @@ public class ListOperator {
             System.out.println(entry.getKey() + "---" + entry.getValue());
         }
 
-        Map<Integer, User> map2 = list.stream().collect(Collectors.toMap(User::getId, a -> a));
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        Map<Integer, User> map2 = list.stream().collect(Collectors.toMap(User::getId, Function.identity(), (u1, u2) -> u1));
         for (Map.Entry<Integer, User> entry : map2.entrySet()) {
             System.out.println(entry.getKey() + "---" + entry.getValue());
         }
+
         /**
          * List -> Map
          * 需要注意的是：
          * toMap 如果集合对象有重复的key，会报错Duplicate key ....
          *  User1,User2的id都为1。
          *  可以用 (u1, u2) -> u1 来设置，如果有重复的key,则保留key1,舍弃key2
+         *  Function.identity()返回一个输出跟输入一样的Lambda表达式对象，等价于形如user -> user形式的Lambda表达式。
+         *  user -> user 是一个用来返回自己的lambda表达式
          */
-        Map<Integer, User> map3 = list.stream().collect(Collectors.toMap(User::getId, user -> user, (u1, u2) -> u1));
+        Map<Integer, User> map3 = list.stream().collect(Collectors.toMap(User::getId, Function.identity(), (u1, u2) -> u1));
         for (Map.Entry<Integer, User> entry : map3.entrySet()) {
             System.out.println(entry.getKey() + "---" + entry.getValue());
         }
@@ -103,6 +110,19 @@ public class ListOperator {
         //按照年龄升序
         list.sort(Comparator.comparingInt(User::getAge));
         list.stream().forEach(user -> System.out.println(user));
+    }
+
+
+    @Test
+    public void identityTest() {
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        int[] array = list.stream().mapToInt(i -> i).toArray();
+        int sum = list.stream().mapToInt(i -> i).sum();
+        System.out.println(sum);
+
+
     }
 }
 

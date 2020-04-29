@@ -2,6 +2,8 @@ package com.dalingjia.util.guavaCache;
 
 import com.google.common.cache.*;
 import com.dalingjia.equals.Student;
+import com.google.common.util.concurrent.Uninterruptibles;
+import org.junit.Test;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -63,5 +65,14 @@ public class CacheTest {
         System.out.print("cache stats:");
         //最后打印缓存的命中率等 情况
         System.out.println(studentCache.stats().toString());
+    }
+
+
+    @Test
+    public void sleepTest() {
+        System.out.println("start = " + System.currentTimeMillis());
+        //等待3000毫秒（3秒）
+        Uninterruptibles.sleepUninterruptibly(3000, TimeUnit.MILLISECONDS);
+        System.out.println("end = " + System.currentTimeMillis());
     }
 }
