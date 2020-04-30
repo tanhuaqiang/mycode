@@ -1,6 +1,7 @@
 package com.dalingjia.concurrent;
 
 import com.daling.util.ThreadPoolUtil;
+import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -116,5 +117,154 @@ public class CompletableFutureTest {
             e.printStackTrace();
         }
         return i;
+    }
+
+
+    /**
+     * 进行变换
+     */
+    @Test
+    public void thenApply() {
+        //以Async结尾的方法都是可以异步执行的，它的入参是上一个阶段计算后的结果
+        String result = CompletableFuture.supplyAsync(() -> "hello").thenApply(s -> s + " world").join();
+        System.out.println(result);
+    }
+
+    /**
+     * 进行消耗
+     */
+    @Test
+    public void thenAccept() {
+        CompletableFuture.supplyAsync(() -> "hello").thenAccept(s -> System.out.println(s + " world"));
+    }
+
+    @Test
+    public void thenRun() {
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "hello";
+        }).thenRun(() -> System.out.println("hello world"));
+        while (true) {
+        }
+    }
+
+    /**
+     * 结合两个CompletableFuture的结果，进行转化后返回
+     */
+    @Test
+    public void thenCombine() {
+        String result = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "hello";
+        }).thenCombine(CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "world";
+        }), (s1, s2) -> s1 + " " + s2).join();
+
+        System.out.println(result);
+    }
+
+
+    @Test
+    public void thenAcceptBoth() {
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "hello";
+        }).thenAcceptBoth(CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "world";
+        }), (s1, s2) -> System.out.println(s1 + " " + s2));
+        while (true) {
+        }
+    }
+
+    /**
+     * 在两个CompletableFuture都运行完执行
+     */
+    @Test
+    public void runAfterBoth() {
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "s1";
+        }).runAfterBothAsync(CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "s2";
+        }), () -> System.out.println("这里是一个Runnable，没有返回值"));
+        while (true) {
+
+        }
+    }
+
+    /**
+     * 两个CompletionStage，谁计算的快，我就用那个CompletionStage的结果进行下一步的转化操作
+     */
+    @Test
+    public void applyToEither() {
+        List<Integer> result = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return Lists.newArrayList(1, 2, 3);
+        }).applyToEither(CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return Lists.newArrayList(4, 5, 6);
+        }), s -> s).join();
+        System.out.println(result);
+    }
+
+    @Test
+    public void acceptEither() {
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "s1";
+        }).acceptEither(CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "hello world";
+        }), System.out::println);
+        while (true){
+
+        }
     }
 }
