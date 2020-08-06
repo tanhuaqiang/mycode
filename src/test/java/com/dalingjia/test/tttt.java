@@ -1,5 +1,7 @@
 package com.dalingjia.test;
 
+import com.daling.bean.YesNoEnum;
+
 public class tttt {
 
     static class Face {
@@ -36,5 +38,11 @@ public class tttt {
         Body body1 = (Body) body.clone();
         System.out.println("body == body1 : " + (body == body1));
         System.out.println("body.head == body1.head : " + (body.head == body1.head));
+
+
+        Integer deadlineIsModify = null;
+        System.out.println(YesNoEnum.NO.getCode() == deadlineIsModify);
+        System.out.println(deadlineIsModify == YesNoEnum.NO.getCode());
+        System.out.println();
     }
 }
