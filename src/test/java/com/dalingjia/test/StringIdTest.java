@@ -57,5 +57,6 @@ public class StringIdTest {
                 "201348\n" +
                 "201349";
         System.out.println(id.replace("\n", ","));
+        System.out.println("tanhuaqiang");
     }
 }
