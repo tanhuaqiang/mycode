@@ -57,5 +57,6 @@ public class StringIdTest {
                 "201348\n" +
                 "201349";
         System.out.println(id.replace("\n", ","));
+        System.out.println("第一次提交代码，分割线--------------");
     }
 }
