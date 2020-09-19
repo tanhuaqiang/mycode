@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : tanhq
@@ -26,5 +28,17 @@ public class JacksonHelper {
             log.error("jsonToList error ", e);
         }
         return null;
+    }
+
+
+    public static void main(String[] args) {
+        Map<String, String> map = new HashMap<>();
+
+        Map<String, String> map1 = new HashMap<>();
+        map1.put("1", "1");
+        map1.put("2", "2");
+        map1.put("3", "3");
+        map.putAll(map1);
+        System.out.println(map);
     }
 }
