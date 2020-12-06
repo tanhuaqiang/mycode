@@ -1,5 +1,8 @@
 package com.dalingjia.collection.list;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.dalingjia.bean.Student;
 import org.apache.commons.collections.CollectionUtils;
 import org.assertj.core.util.Lists;
 import org.junit.Test;
@@ -51,6 +54,15 @@ public class ListTest {
 		List<Integer> temp = Lists.newArrayList(3434, 398, 980, 42);
 		list.removeAll(temp);
 		System.out.println(list);
+	}
+
+	@Test
+	public void test3(){
+		List<Student> list = new ArrayList<Student>();
+		list.add(new Student("aol", 21));
+		list.add(new Student("gol", 19));
+		System.out.println(JSON.toJSONString(list));
+		System.out.println(list.toString());
 	}
 
 }

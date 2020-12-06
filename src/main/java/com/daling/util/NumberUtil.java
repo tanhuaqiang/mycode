@@ -35,6 +35,7 @@ public class NumberUtil {
         enumMap.put("402", "jlfjs");
         enumMap.put("403", "jlfjs");
         System.out.println(enumMap.containsKey("[403"));
+        System.out.println(enumMap);
 
         String value = "[4,3]";
         char s = '[';
@@ -44,6 +45,12 @@ public class NumberUtil {
         String ss = " 32, 32,32, 432,   34,7 , 2     ";
         ss = ss.replaceAll("\\s+", "");
         System.out.println(ss);
+
+        HashMap<Integer, String> auditType = new HashMap<>();
+        auditType.put(1, "通过");
+        auditType.put(2, "驳回");
+        auditType.put(3, "更正");
+        System.out.println(auditType);
     }
 
 

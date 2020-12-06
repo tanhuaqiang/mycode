@@ -124,10 +124,10 @@ public class StreamTest2 {
         /**
          * 11， joining 连接字符串
          */
-        String collect = list.stream().map(Person::getName).collect(joining(","));
+        String collect = list.stream().map(Person::getName).collect(Collectors.joining(","));
 
         //结果：Today jack and mike and tom play games.
-        String result = list.stream().map(Person::getName).collect(joining(" and ", "Today ", " play games."));
+        String result = list.stream().map(Person::getName).collect(Collectors.joining(" and ", "Today ", " play games."));
         System.out.println("result=" + result);
 
         /**

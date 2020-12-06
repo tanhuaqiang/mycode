@@ -1,7 +1,12 @@
 package com.dalingjia.test;
 
+import org.assertj.core.util.Lists;
+import org.springframework.util.CollectionUtils;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 public class MyTest {
 
@@ -45,5 +50,9 @@ public class MyTest {
         //get取出，从逻辑上讲应该能输出“天龙八部”
         System.out.println("结果:" + map.get(person));
         System.out.println("结果:" + map.get(person1));
+        System.out.println(UUID.randomUUID().toString());
+
+        List<Integer> list = Lists.newArrayList();
+        System.out.println(list == null);
     }
 }
