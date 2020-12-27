@@ -42,7 +42,7 @@ public class EStest {
 	public TransportClient getClient() throws Exception {
 		// on startup
 		TransportClient client = new PreBuiltTransportClient(Settings.EMPTY)
-				.addTransportAddress(new TransportAddress(InetAddress.getByName("localhost"), 9300));
+				.addTransportAddress(new TransportAddress(InetAddress.getByName("192.168.199.242"), 9200));
 		return client;
 	}
 
