@@ -267,7 +267,7 @@
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
-            <version>6.4.2</version><!--$NO-MVN-MAN-VER$-->
+            <version>6.8.13</version><!--$NO-MVN-MAN-VER$-->
         </dependency>
 
         <dependency>
