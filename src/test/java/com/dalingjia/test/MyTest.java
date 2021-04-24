@@ -45,5 +45,6 @@ public class MyTest {
         //get取出，从逻辑上讲应该能输出“天龙八部”
         System.out.println("结果:" + map.get(person));
         System.out.println("结果:" + map.get(person1));
+        System.out.println("jjjj");
     }
 }
