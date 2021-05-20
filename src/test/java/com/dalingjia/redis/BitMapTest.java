@@ -1,4 +1,4 @@
-package com.dalingjia.redis.jedis;
+package com.dalingjia.redis;
 
 import com.daling.util.lock.jedisLock.RedisHelper;
 import redis.clients.jedis.Jedis;

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 
 import com.google.common.base.Preconditions;
+import redis.clients.jedis.params.SetParams;
 
 /**
  * @author tanhq
@@ -101,7 +102,11 @@ public class RedisLock implements RdLock {
 		}
 		// set(String key, String value, String nxxx, String expx, long time)
 		//使用redis中setnx保证资源的原子性操作
-		String rtnCode = this.myJedis.set(lockKey, uuidValue, setMode_NX, expTimeunits_PX, lockLeaseTime);
+//		String rtnCode = this.myJedis.set(lockKey, uuidValue, setMode_NX, expTimeunits_PX, lockLeaseTime);
+		SetParams setParams = new SetParams();
+		setParams.px(lockLeaseTime);
+		setParams.nx();
+		String rtnCode = this.myJedis.set(lockKey, uuidValue, setParams);
 //		log.debug("SET_NX_PX, rtnCode={}",rtnCode);
 
 		// SETNX成功，则成功获取一个锁

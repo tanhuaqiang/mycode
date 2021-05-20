@@ -2,6 +2,9 @@ package com.daling.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
@@ -322,21 +325,38 @@ public final class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         return true;
     }
 
-
-    public static void main(String[] args) {//10----11
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587513600L, 1587517200L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587513600L, 1587520800L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587513600L, 1587522600L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587513600L, 1587524400L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587513600L, 1587526200L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587520800L, 1587522600L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587520800L, 1587524400L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587520800L, 1587526200L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587522600L, 1587523200L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587522600L, 1587524400L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587522600L, 1587526200L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587524400L, 1587517200L));
-        System.out.println(timeCross(1587520800L, 1587524400L, 1587526200L, 1587526800L));
+    /**
+     * 获取日期向前或向后diff天的日期
+     *
+     * @param date    目标日期
+     * @param diff    正数表示向后天数，负数表示向前天数
+     * @return 结果日期
+     */
+    public static Date getPlusDate(Date date, int diff) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, diff);//把日期增加/减少diff天.正数往后推,负数往前移
+        return calendar.getTime();
     }
 
+
+    public static Integer getDateByNumber(Integer date, Integer number) {
+        DateFormat df = new SimpleDateFormat("yyyyMMdd");
+        try {
+            Date parse = df.parse(String.valueOf(date));
+            String format = df.format(getPlusDate(parse, number));
+            return Integer.valueOf(format);
+        } catch (ParseException e) {
+
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getDateByNumber(20210513, -1));
+        System.out.println(getDateByNumber(20210513, 1));
+        System.out.println(getDateByNumber(20210501, -1));
+        System.out.println(getDateByNumber(20210501, 2));
+        System.out.println(getDateByNumber(20210501, -2));
+    }
 }
