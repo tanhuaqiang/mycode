@@ -1,10 +1,14 @@
 package com.daling.util;
 
+import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Maps;
 import org.joda.time.DateTime;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author tanhq
@@ -74,5 +78,34 @@ public class NumberUtil {
         System.out.println(numberFormat2(23, 0));
         System.out.println(numberFormat2(23, 17));
         System.out.println(numberFormat2(23, 17888));
+
+
+        Map<Long, Map<String, Object>> mapMap = Maps.newHashMap();
+        Map<String, Object> map = new HashMap<>();
+        map.put("lastDayCommentCount", 23);
+        map.put("lastWeekCommentCount", 32);
+        map.put("lastDayCommentRatio", -76.78);
+        map.put("lastWeekCommentRatio", -9.66);
+
+        //好评率
+        map.put("lastDayPraiseCount", 32);
+        map.put("lastWeekPraiseCount", 53);
+        map.put("lastDayPraiseRatio", 9.23);
+        map.put("lastWeekPraiseRatio", -5.32);
+        mapMap.put(23232L, map);
+
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put("lastDayCommentCount", 23);
+        map2.put("lastWeekCommentCount", 32);
+        map2.put("lastDayCommentRatio", -76.78);
+        map2.put("lastWeekCommentRatio", -9.66);
+
+        //好评率
+        map2.put("lastDayPraiseCount", 32);
+        map2.put("lastWeekPraiseCount", 53);
+        map2.put("lastDayPraiseRatio", 9.23);
+        map2.put("lastWeekPraiseRatio", -5.32);
+        mapMap.put(876111L, map2);
+        System.out.println(JSON.toJSON(mapMap));
     }
 }

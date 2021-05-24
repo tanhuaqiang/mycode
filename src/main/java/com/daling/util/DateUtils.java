@@ -352,11 +352,19 @@ public final class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         return null;
     }
 
+    public static Integer formatDate(Date date) {
+        DateFormat df = new SimpleDateFormat("yyyyMMdd");
+        String format = df.format(date);
+        return Integer.valueOf(format);
+    }
+
     public static void main(String[] args) {
         System.out.println(getDateByNumber(20210513, -1));
         System.out.println(getDateByNumber(20210513, 1));
         System.out.println(getDateByNumber(20210501, -1));
         System.out.println(getDateByNumber(20210501, 2));
         System.out.println(getDateByNumber(20210501, -2));
+
+        System.out.println(formatDate(new Date()));
     }
 }
