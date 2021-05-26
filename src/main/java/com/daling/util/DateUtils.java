@@ -339,6 +339,34 @@ public final class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         return calendar.getTime();
     }
 
+    /**
+     * 指定日期当天的00:00:00
+     *
+     * @author lichengwu
+     */
+    public static Date toFirstSecond(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTime();
+    }
+
+    /**
+     * 指定日期当天的最后一秒 上面的方法toLastSecond返回的时间插入库后变成下一天0s了
+     */
+    public static Date lastSecond(Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.SECOND, 59);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTime();
+    }
+
 
     public static Integer getDateByNumber(Integer date, Integer number) {
         DateFormat df = new SimpleDateFormat("yyyyMMdd");
@@ -358,6 +386,20 @@ public final class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         return Integer.valueOf(format);
     }
 
+    public static String formatTime(Date date) {
+        DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        return df.format(date);
+    }
+
+    private static String dataUpdateTime(Date date) {
+        if (date == null) {
+            return "";
+        }
+        Date startTime = DateUtils.toFirstSecond(DateUtils.getPlusDate(date, -7));
+        Date endTime = DateUtils.lastSecond(DateUtils.getPlusDate(date, -1));
+        return DateUtils.formatTime(startTime) + "-" + DateUtils.formatTime(endTime);
+    }
+
     public static void main(String[] args) {
         System.out.println(getDateByNumber(20210513, -1));
         System.out.println(getDateByNumber(20210513, 1));
@@ -366,5 +408,6 @@ public final class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         System.out.println(getDateByNumber(20210501, -2));
 
         System.out.println(formatDate(new Date()));
+        System.out.println(dataUpdateTime(new Date()));
     }
 }

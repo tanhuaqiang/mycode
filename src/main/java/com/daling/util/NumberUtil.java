@@ -61,12 +61,17 @@ public class NumberUtil {
      * @return
      */
     private static String  numberFormat2(Integer numberOne, Integer numberTwo) {
-        double num = numberTwo > 0 ? (float)(numberOne - numberTwo) / (float)numberTwo * 100 : 0;
+        double num = numberTwo > 0 ? (double)(numberOne - numberTwo) / (double)numberTwo * 100 : 0;
         BigDecimal b = new BigDecimal(num);
         return String.valueOf(b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
 
     }
 
+    private static String percent(Integer numberOne, Integer numberTwo) {
+        double num = numberTwo > 0 ? (double)numberOne / (double)numberTwo * 100 : 0;
+        BigDecimal bg = new BigDecimal(num);
+        return String.valueOf(bg.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
+    }
 
     public static void main(String[] args) {
         System.out.println(numberFormat(23, 99));
@@ -107,5 +112,10 @@ public class NumberUtil {
         map2.put("lastWeekPraiseRatio", -5.32);
         mapMap.put(876111L, map2);
         System.out.println(JSON.toJSON(mapMap));
+
+
+        System.out.println(percent(22, 100));
+        System.out.println(percent(227, 1290));
+        System.out.println(percent(23, 56));
     }
 }
