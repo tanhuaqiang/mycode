@@ -14,7 +14,8 @@ import java.util.Map;
 public class TestJedis {
 
     public static void main(String[] args) {
-        Jedis jedis = new Jedis("172.18.152.189", 6379);
+//        Jedis jedis = new Jedis("172.18.152.189", 6379);
+        Jedis jedis = new Jedis("192.168.199.166", 6379);
 
         System.out.println(jedis.ping());
         jedis.close();
