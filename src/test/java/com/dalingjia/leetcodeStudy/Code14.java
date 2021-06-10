@@ -1,5 +1,9 @@
 package com.dalingjia.leetcodeStudy;
 
+import com.daling.util.NumberUtil;
+
+import java.math.BigDecimal;
+
 /**
  * 14. 最长公共前缀
  */
@@ -22,6 +26,26 @@ public class Code14 {
             result.append(c);
         }
         return result.toString();
+    }
+
+    public static Double retainDecimal(Double originNum, Integer scale) {
+        BigDecimal bg = BigDecimal.valueOf(originNum);
+        return bg.setScale(scale,BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+
+
+    public static void main(String[] args) {
+        double i = 83.22d;
+        double j = 76.66;
+        System.out.println(i - j);
+        System.out.println(retainDecimal(i - j, 2));
+        System.out.println(NumberUtil.numberFormat(2, 4));
+        System.out.println(NumberUtil.retainDecimal(50d, 2));
+        System.out.println(NumberUtil.retainDecimal(50.0, 2));
+        System.out.println(NumberUtil.retainDecimal(50.2, 2));
+        System.out.println(NumberUtil.retainDecimal(50.22, 2));
+        System.out.println(NumberUtil.retainDecimal(50.223, 2));
     }
 
 }

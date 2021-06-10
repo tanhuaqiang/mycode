@@ -73,6 +73,68 @@ public class NumberUtil {
         return String.valueOf(bg.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
     }
 
+    public static Double numberFormat(Object numberOne, Object numberTwo) {
+        if(!isNumber(numberOne) || !isNumber(numberTwo)) {
+            throw new RuntimeException("计算增量百分比入参格式不正确");
+        }
+        Double numberOneDouble = Double.parseDouble(numberOne.toString());
+        Double numberTwoDouble = Double.parseDouble(numberTwo.toString());
+
+
+        double num = numberTwoDouble > 0 ? (numberOneDouble - numberTwoDouble) / numberTwoDouble * 100 : 0;
+        BigDecimal bg = BigDecimal.valueOf(num);
+        return bg.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+    /**
+     * 计算增量百分比
+     * scale保留小数位数
+     * */
+    public static Double percentNumber(Object numberOne, Object numberTwo, Integer scale) {
+        if(!isNumber(numberOne) || !isNumber(numberTwo)) {
+            throw new RuntimeException("计算增量百分比入参格式不正确");
+        }
+
+        Double numberOneDouble = Double.parseDouble(numberOne.toString());
+        Double numberTwoDouble = Double.parseDouble(numberTwo.toString());
+
+        double num = numberTwoDouble > 0 ? numberOneDouble / numberTwoDouble * 100 : 0;
+        return retainDecimal(num, scale);
+    }
+
+    /**
+     * Double类型截取小数（采用四舍五入）
+     * */
+    public static Double retainDecimal(Double originNum, Integer scale) {
+        BigDecimal bg = BigDecimal.valueOf(originNum);
+        return bg.setScale(scale,BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+
+    public static boolean isNumber (Object obj) {
+        if (obj instanceof Number) {
+            return true;
+        } else if (obj instanceof String){
+            try{
+                Double.parseDouble((String)obj);
+                return true;
+            }catch (Exception e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断Double是否有小数部分
+     */
+    public static boolean isHasDecimal(Double value) {
+        double eps = 1e-10;
+        boolean result = value - Math.floor(value) >= eps;
+        return result;
+    }
+
+
     public static void main(String[] args) {
         System.out.println(numberFormat(23, 99));
         System.out.println(numberFormat(23, 0));
