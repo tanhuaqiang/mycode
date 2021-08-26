@@ -130,54 +130,28 @@ public class NumberUtil {
      */
     public static boolean isHasDecimal(Double value) {
         double eps = 1e-10;
-        boolean result = value - Math.floor(value) >= eps;
-        return result;
+        return value - Math.floor(value) >= eps;
     }
 
 
     public static void main(String[] args) {
-        System.out.println(numberFormat(23, 99));
-        System.out.println(numberFormat(23, 0));
-        System.out.println(numberFormat(23, 17));
-        System.out.println(numberFormat(23, 17888));
-        System.out.println("------------------");
-        System.out.println(numberFormat2(23, 99));
-        System.out.println(numberFormat2(23, 0));
-        System.out.println(numberFormat2(23, 17));
-        System.out.println(numberFormat2(23, 17888));
+        Double i = 100.0;
+        Double j = 20.8;
+        Double a = 20.4;
+        Double b = 20.5;
+        Double c = 20.6;
+        Double d = 100.0;
+        Double e = 98.9;
+        System.out.println(isHasDecimal(i) ? i : i.intValue());
+        System.out.println(isHasDecimal(j) ? j : j.intValue());
+        if (isHasDecimal(i)) {
+            System.out.println(i);
+        } else {
+            System.out.println(i.intValue());
+        }
+        System.out.println(d.intValue());
+        System.out.println(e.intValue());
 
 
-        Map<Long, Map<String, Object>> mapMap = Maps.newHashMap();
-        Map<String, Object> map = new HashMap<>();
-        map.put("lastDayCommentCount", 23);
-        map.put("lastWeekCommentCount", 32);
-        map.put("lastDayCommentRatio", -76.78);
-        map.put("lastWeekCommentRatio", -9.66);
-
-        //好评率
-        map.put("lastDayPraiseCount", 32);
-        map.put("lastWeekPraiseCount", 53);
-        map.put("lastDayPraiseRatio", 9.23);
-        map.put("lastWeekPraiseRatio", -5.32);
-        mapMap.put(23232L, map);
-
-        Map<String, Object> map2 = new HashMap<>();
-        map2.put("lastDayCommentCount", 23);
-        map2.put("lastWeekCommentCount", 32);
-        map2.put("lastDayCommentRatio", -76.78);
-        map2.put("lastWeekCommentRatio", -9.66);
-
-        //好评率
-        map2.put("lastDayPraiseCount", 32);
-        map2.put("lastWeekPraiseCount", 53);
-        map2.put("lastDayPraiseRatio", 9.23);
-        map2.put("lastWeekPraiseRatio", -5.32);
-        mapMap.put(876111L, map2);
-        System.out.println(JSON.toJSON(mapMap));
-
-
-        System.out.println(percent(22, 100));
-        System.out.println(percent(227, 1290));
-        System.out.println(percent(23, 56));
     }
 }

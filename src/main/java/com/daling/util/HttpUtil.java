@@ -45,7 +45,9 @@ import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLHandshakeException;
 import java.io.IOException;
 import java.io.InterruptedIOException;
+import java.net.MalformedURLException;
 import java.net.ProxySelector;
+import java.net.URL;
 import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 import java.security.KeyManagementException;
@@ -53,6 +55,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -541,4 +544,30 @@ public class HttpUtil {
 		}
 	}
 
+	private static Map<String, String> getUrlParamFromMpParam(String mpParam) throws MalformedURLException {
+		if(mpParam.startsWith("http")) {
+			URL url = new URL(mpParam);
+			mpParam = url.getQuery();
+		}
+		Map<String, String> map = new HashMap<>();
+
+		String[] params = mpParam.split("&");
+		for (String param : params){
+			String[] keyValue = param.split("=");
+			if(keyValue.length > 1 && org.apache.commons.lang3.StringUtils.isNotBlank(keyValue[1])){
+				map.put(keyValue[0], keyValue[1]);
+			}
+		}
+		return map;
+	}
+
+	public static void main(String[] args) {
+		String mpParam = "http://canting.sjst.test.meituan.com/api/rmstakeaway/re1?tenantId=10036586&brandId=&shopId=600028077&type=2";
+		try {
+			Map<String, String> map = getUrlParamFromMpParam(mpParam);
+			System.out.println(map);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+	}
 }

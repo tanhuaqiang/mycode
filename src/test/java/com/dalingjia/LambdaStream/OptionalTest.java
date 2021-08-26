@@ -46,5 +46,6 @@ public class OptionalTest {
 
 
         System.out.println(Optional.ofNullable("").orElse("apple"));
+        System.out.println(Optional.ofNullable(null).orElse(0));
     }
 }

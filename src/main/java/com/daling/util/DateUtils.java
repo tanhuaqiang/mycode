@@ -400,14 +400,40 @@ public final class DateUtils extends org.apache.commons.lang3.time.DateUtils {
         return DateUtils.formatTime(startTime) + "-" + DateUtils.formatTime(endTime);
     }
 
-    public static void main(String[] args) {
-        System.out.println(getDateByNumber(20210513, -1));
-        System.out.println(getDateByNumber(20210513, 1));
-        System.out.println(getDateByNumber(20210501, -1));
-        System.out.println(getDateByNumber(20210501, 2));
-        System.out.println(getDateByNumber(20210501, -2));
+    public  static String formatRefDate(Date date) {
+        if (date == null) {
+            return "";
+        }
+        DateFormat ref = new SimpleDateFormat("yyyy/MM/dd");
+        return ref.format(date);
+    }
 
-        System.out.println(formatDate(new Date()));
-        System.out.println(dataUpdateTime(new Date()));
+    public static Date formatSimpleToDate(String date)  {
+        try {
+            DateFormat simple = new SimpleDateFormat("yyyyMMdd");
+            return simple.parse(date);
+        }catch ( Exception e) {
+
+        }
+        return null;
+    }
+
+
+    public static void main(String[] args) {
+//        System.out.println(getDateByNumber(20210513, -1));
+//        System.out.println(getDateByNumber(20210513, 1));
+//        System.out.println(getDateByNumber(20210501, -1));
+//        System.out.println(getDateByNumber(20210501, 2));
+//        System.out.println(getDateByNumber(20210501, -2));
+//
+//        System.out.println(formatDate(new Date()));
+//        System.out.println(dataUpdateTime(new Date()));
+
+        System.out.println(DateUtils.formatRefDate(DateUtils.formatSimpleToDate("20210715")));
+        System.out.println(DateUtils.formatRefDate(DateUtils.formatSimpleToDate("20210720")));
+
+        LocalDateTime start = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
+        LocalDateTime end = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+        System.out.println(start);
     }
 }
