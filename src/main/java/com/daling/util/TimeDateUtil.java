@@ -1,14 +1,19 @@
 package com.daling.util;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.BooleanUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
 
 public class TimeDateUtil {
@@ -129,5 +134,25 @@ public class TimeDateUtil {
         Map<Integer, Boolean> openSwitchMap = Maps.newHashMap();
         Boolean aBoolean = openSwitchMap.get(323232) != null && BooleanUtils.isTrue(openSwitchMap.get(2323));
         System.out.println(aBoolean);
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date deliveryTime = null;
+        String tt = "";
+        try {
+            deliveryTime = df.parse(tt);
+        } catch (ParseException e) {
+            System.out.println("error:" + tt);
+        }
+        System.out.println(deliveryTime);
+
+        Long i = 100L;
+        long ii = 100;
+        System.out.println(i.equals(ii));
+
+        HashSet<Integer> set = new HashSet<Integer>();;
+        set.add(1);
+        set.add(2);
+        ArrayList<Integer> list = Lists.newArrayList(set);
+        System.out.println(list);
     }
 }

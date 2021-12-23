@@ -39,6 +39,7 @@ public class ListOperator {
         }
 
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        // List 转 Map 操作
         Map<Integer, User> map2 = list.stream().collect(Collectors.toMap(User::getId, Function.identity(), (u1, u2) -> u1));
         for (Map.Entry<Integer, User> entry : map2.entrySet()) {
             System.out.println(entry.getKey() + "---" + entry.getValue());

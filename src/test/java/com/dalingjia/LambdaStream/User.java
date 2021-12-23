@@ -1,6 +1,8 @@
 package com.dalingjia.LambdaStream;
 
+import com.alibaba.fastjson.JSON;
 import lombok.Data;
+import org.json.JSONObject;
 
 import java.math.BigDecimal;
 
@@ -37,5 +39,13 @@ public class User {
                 ", account=" + account +
                 ", grade=" + grade +
                 '}';
+    }
+
+    public static void main(String[] args) {
+        BigDecimal account = new BigDecimal(32);
+        User user = new User(1, "tanhq", 24, account, 23);
+
+        System.out.println(user);
+        System.out.println(JSON.toJSONString(user));
     }
 }
