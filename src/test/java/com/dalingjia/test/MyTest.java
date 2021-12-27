@@ -107,7 +107,10 @@ public class MyTest {
 //        System.out.println(data.replaceAll("//s*", ""));
         //替换空格
         System.out.println(data.replaceAll("\\s*", ""));
+        int length = data.replaceAll("\\s+", "").split(",").length;
+        System.out.println(length);
     }
+
 
 
 }
