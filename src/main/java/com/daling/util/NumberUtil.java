@@ -1,13 +1,16 @@
 package com.daling.util;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.joda.time.DateTime;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -71,6 +74,12 @@ public class NumberUtil {
         double num = numberTwo > 0 ? (double)numberOne / (double)numberTwo * 100 : 0;
         BigDecimal bg = new BigDecimal(num);
         return String.valueOf(bg.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
+    }
+
+    @Test
+    public void test() {
+        System.out.println(percent(1, 3));
+        System.out.println(percent(50, 100));
     }
 
     public static Double numberFormat(Object numberOne, Object numberTwo) {
@@ -152,6 +161,15 @@ public class NumberUtil {
         System.out.println(d.intValue());
         System.out.println(e.intValue());
 
+        Map<Long, List<Long>> masterGiftMap = Maps.newHashMap();
+        masterGiftMap.put(11L, Lists.newArrayList(11L));
+        List<Long> longs = masterGiftMap.get(11L);
+        longs.add(22L);
+        masterGiftMap.put(11L, longs);
+
+        System.out.println(masterGiftMap);
+
+        System.out.println(String.format("赠品(%s)无法单独退款，需和主品(%s)一起退款！", 2323L, 32323L));
 
     }
 }
