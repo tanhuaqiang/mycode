@@ -1,7 +1,7 @@
 package com.dalingjia.leetcode.sort;
 
 /**
- * 快速排序
+ * 快速排序（快排）
  */
 public class QuickSort {
 

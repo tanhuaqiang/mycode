@@ -3,7 +3,7 @@ package com.dalingjia.leetcode.ListNode;
 /**
  * @author tanhq
  * @Description Leetcode 25  K个一组反转链表
- * @Date 2019/11/17 上午11:16
+ * @Date 2019/11/17 上午11:16 每k个元素反转一次链表
  * @Version 1.0
  **/
 public class ReverseKGroup {
