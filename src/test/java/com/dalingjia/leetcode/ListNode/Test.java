@@ -8,42 +8,28 @@ package com.dalingjia.leetcode.ListNode;
  **/
 public class Test {
 
-    public ListNode reverseKGroup(ListNode head, int k) {
-        //链表总长度
-        int len = 0;
-        ListNode tmp = head;
-        while (tmp != null) {
-            len++;
-            tmp = tmp.next;
+
+    public static ListNode reverse(ListNode node) {
+        if (node == null || node.next == null) {
+            return node;
         }
-        len /= k;
-        if (len <= 0) {
-            return head;
-        }
-        ListNode cur = head;
-        ListNode tail = cur;
-        for (int i = 0; i < len; i++) {
-            ListNode newHead = cur;
-            ListNode newList = null;
-            int count = k;
-            while (count > 0) {
-                tmp = cur;
-                cur = cur.next;
-                tmp.next = newList;
-                newList = tmp;
-                count--;
-            }
-            if (i == 0) {
-                head = newList;
-            }else {
-                tail.next = newList;
-                tail = newHead;
-            }
-        }
-        if (cur != null) {
-            tail.next = cur;
-        }
-        return head;
+        ListNode reverse = reverse(node.next);
+        node.next.next = node;
+        node.next = null;
+        return reverse;
+
+    }
+
+
+    public static void main(String[] args) {
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
+        node1.next = node2;
+        node2.next = node3;
+        ListNode res = reverse(node1);
+        System.out.println(res);
+
     }
 }
 
