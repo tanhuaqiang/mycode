@@ -29,5 +29,7 @@ public class IsPalindrome {
     @Test
     public void method() {
         System.out.println(isPalindrome("0P"));
+        System.out.println(isPalindrome("p0P"));
+        System.out.println(isPalindrome("p060P"));
     }
 }

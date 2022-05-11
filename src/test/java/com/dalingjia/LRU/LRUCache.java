@@ -35,6 +35,7 @@ public class LRUCache {
             map.remove(key);
         }
         if(map.size() >= capacity){
+            //删除集合中的第一个元素
             map.remove(map.keySet().iterator().next());
         }
         map.put(key, value);
@@ -51,6 +52,16 @@ public class LRUCache {
         System.out.println(cache.get(1)); // returns -1 (not found)
         System.out.println(cache.get(3)); // returns 3
         System.out.println(cache.get(4)); // returns 4
+
+
+        LinkedHashMap<Integer, Integer> map = new LinkedHashMap<>();
+        map.put(1, 1);
+        map.put(2, 2);
+        map.put(3, 3);
+        Iterator<Integer> iterator = map.keySet().iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 }
 

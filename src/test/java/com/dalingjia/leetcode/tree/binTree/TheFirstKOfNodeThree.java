@@ -4,6 +4,9 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
+/**
+ * 二叉搜索树的第k大节点
+ */
 public class TheFirstKOfNodeThree {
 
     private static List<Integer> list = Lists.newArrayList();
@@ -33,11 +36,33 @@ public class TheFirstKOfNodeThree {
         for (int i = 1; i <array.length ; i++) {
             nodeTree.insert2(nodeTree, array[i]);
         }
+        //中序遍历
         inOrder(nodeTree);
         for (int i = 0; i < list.size(); i++) {
             if((i+1) == 3){
                 System.out.println(list.get(i));
             }
+        }
+    }
+
+    static int index = 0;
+    static int result = 0;
+    public static int kthLargest(TreeNode node, int k) {
+        find(node, k);
+        return result;
+    }
+
+    private static void find(TreeNode node, int k) {
+        if (node.right != null) {
+            find(node.right, k);
+        }
+        index++;
+        if (index == k) {
+            result = node.val;
+            return;
+        }
+        if (node.left != null) {
+            find(node.left, k);
         }
     }
 }
