@@ -19,7 +19,7 @@ public class Code14 {
             char c = chars[i];
             for (int j = 1; j < strs.length; j++) {
                 //放在出现字符串长度不够的情况
-                if (strs[j].length()-1 < i || strs[j].charAt(i) != c) {
+                if (strs[j].length() - 1 < i || strs[j].charAt(i) != c) {
                     return result.toString();
                 }
             }
@@ -28,11 +28,30 @@ public class Code14 {
         return result.toString();
     }
 
-    public static Double retainDecimal(Double originNum, Integer scale) {
-        BigDecimal bg = BigDecimal.valueOf(originNum);
-        return bg.setScale(scale,BigDecimal.ROUND_HALF_UP).doubleValue();
+
+    public String longestCommonPrefix2(String[] strs) {
+        if (strs.length == 0) {
+            return "";
+        }
+        //公共前缀比所有字符串都短，随便选一个先
+        String s = strs[0];
+        for (String string : strs) {
+            while (!string.startsWith(s)) {
+                if (s.length() == 0) {
+                    return "";
+                }
+                //公共前缀不匹配就让它变短！
+                s = s.substring(0, s.length() - 1);
+            }
+        }
+        return s;
     }
 
+
+    public static Double retainDecimal(Double originNum, Integer scale) {
+        BigDecimal bg = BigDecimal.valueOf(originNum);
+        return bg.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
 
 
     public static void main(String[] args) {

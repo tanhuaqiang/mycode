@@ -8,6 +8,9 @@ import java.util.List;
 
 /*
  * 冒泡排序
+ * 1，时间复杂度：
+ *    时间复杂度是O(n^2);
+ * 2，空间复杂度：O(1)
  */
 public class BubbleSort {
 

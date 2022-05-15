@@ -2,7 +2,7 @@ package com.dalingjia.leetcode.ListNode;
 
 /**
  * @author tanhq
- * @Description 移除链表元素
+ * @Description 203 移除链表元素
  * @Date 2019/8/20 上午10:30
  * @Version 1.0
  **/
@@ -33,8 +33,32 @@ public class RemoveElements {
         return head;
     }
 
+
     /**
-     * 给定指定节点，删除该节点 LeetCode237
+     * 设置一个虚拟节点
+     * @param head
+     * @param val
+     * @return
+     */
+    public ListNode removeElements2(ListNode head, int val) {
+        ListNode header = new ListNode(-1);
+        header.next = head;
+        ListNode cur = header;
+        while (cur.next != null) {
+            if (cur.next.val == val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
+            }
+        }
+        return header.next;
+
+    }
+
+
+
+    /**
+     * 给定指定节点，删除该节点 LeetCode 237
      * @param node
      */
     public void deleteNode(ListNode node) {

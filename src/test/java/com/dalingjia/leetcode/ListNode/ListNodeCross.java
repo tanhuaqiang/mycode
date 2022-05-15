@@ -3,14 +3,14 @@ package com.dalingjia.leetcode.ListNode;
 import org.junit.Test;
 
 /**
- * 链表相交
- *   我们可以首先遍历两个链表得到它们的长度，就能知道哪个链表比较长，以及长的链表比短的链表多几个结点。
- *   在第二次遍历的时候，在较长的链表上先走若干步，接着再同时在两个链表上遍历，找到的第一个相同的结点就是它们的第一个公共结点
+ * 160 链表相交
+ * 我们可以首先遍历两个链表得到它们的长度，就能知道哪个链表比较长，以及长的链表比短的链表多几个结点。
+ * 在第二次遍历的时候，在较长的链表上先走若干步，接着再同时在两个链表上遍历，找到的第一个相同的结点就是它们的第一个公共结点
  */
 public class ListNodeCross {
 
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if(headA == null || headB == null){
+        if (headA == null || headB == null) {
             return null;
         }
         int lengthA = listNodeLength(headA);
@@ -28,7 +28,7 @@ public class ListNodeCross {
         }
         //一起向前遍历链表，直到两链表结点相等
         while (nodeLong != null && nodeShort != null) {
-            if(nodeLong.equals(nodeShort)){
+            if (nodeLong.equals(nodeShort)) {
                 return nodeLong;
             }
             nodeLong = nodeLong.next;
@@ -39,6 +39,7 @@ public class ListNodeCross {
 
     /**
      * 获取链表长度
+     *
      * @param head
      * @return
      */
@@ -50,6 +51,25 @@ public class ListNodeCross {
         }
         return length;
     }
+
+
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        /**
+         定义两个指针, 第一轮让两个到达末尾的节点指向另一个链表的头部, 最后如果相遇则为交点(在第一轮移动中恰好抹除了长度差)
+         两个指针等于移动了相同的距离, 有交点就返回, 无交点就是各走了两条指针的长度
+         **/
+        if (headA == null || headB == null) {
+            return null;
+        }
+        ListNode pA = headA, pB = headB;
+        // 在这里第一轮体现在pA和pB第一次到达尾部会移向另一链表的表头, 而第二轮体现在如果pA或pB相交就返回交点, 不相交最后就是null==null
+        while (pA != pB) {
+            pA = pA == null ? headB : pA.next;
+            pB = pB == null ? headA : pB.next;
+        }
+        return pA;
+    }
+
 
     @Test
     public void method() {

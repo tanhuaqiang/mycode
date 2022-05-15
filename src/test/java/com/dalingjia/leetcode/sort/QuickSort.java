@@ -2,6 +2,12 @@ package com.dalingjia.leetcode.sort;
 
 /**
  * 快速排序（快排）
+ * 1，时间复杂度：
+ * 最坏情况下，时间复杂度是O(n^2);
+ * 最优情况下，时间复杂度是O(nlogn);
+ * 平均时间复杂度是O(nlogn);
+ *
+ * 2，空间复杂度：O(logn)
  */
 public class QuickSort {
 
