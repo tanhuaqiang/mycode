@@ -95,4 +95,20 @@ public class ListNodeCross {
         ListNode node = getIntersectionNode(nodeOne1, nodeTwo1);
         System.out.println(node.val);
     }
+
+    @Test
+    public void method2() {
+        ListNode nodeOne1 = new ListNode(1);
+        ListNode nodeOne2 = new ListNode(2);
+        ListNode nodeOne3 = new ListNode(3);
+        nodeOne1.next = nodeOne2;
+        nodeOne2.next = nodeOne3;
+
+
+        ListNode nodeTwo1 = new ListNode(6);
+        ListNode nodeTwo2 = new ListNode(7);
+        nodeTwo1.next = nodeTwo2;
+        ListNode node = getIntersectionNode2(nodeOne1, nodeTwo1);
+        System.out.println(node == null ? null : node.val);
+    }
 }

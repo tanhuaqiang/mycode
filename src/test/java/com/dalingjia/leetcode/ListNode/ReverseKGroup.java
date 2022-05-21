@@ -112,14 +112,15 @@ public class ReverseKGroup {
      * @return
      */
     public ListNode reverseKGroup3(ListNode head, int k) {
-        ListNode dummy = new ListNode(0), prev = dummy, curr = head, next;
+        //next变量的值为null
+        //定义一个虚拟节点
+        ListNode dummy = new ListNode(-1), prev = dummy, curr = head, next;
         dummy.next = head;
         int length = 0;
         while(head != null) {
             length++;
             head = head.next;
         }
-        head = dummy.next;
         for(int i = 0; i < length / k; i++) {
             for(int j = 0; j < k - 1; j++) {
                 next = curr.next;

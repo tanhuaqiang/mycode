@@ -25,6 +25,9 @@ public class MaxPriorityQueue {
         System.out.println(q.poll());  //3
         System.out.println(q.poll());  //2
         System.out.println(q.poll());  //1
+        String s1 = "ab";
+        String b2 = "a" + "b";
+        System.out.print(s1 == b2);
     }
 }
 

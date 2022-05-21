@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 3, 无重复字符的最长子串
+ */
 public class MaxSubString {
 
     public static int lengthOfLongestSubstring(String s) {
@@ -56,22 +59,49 @@ public class MaxSubString {
             String[] strings = s.split("\\s+");
             length = strings[strings.length - 1].length();
         }
-
         return length;
     }
 
+    /**
+     * 无重复字符的最长子串
+     * 最优解
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring2(String s) {
+        // 记录字符上一次出现的位置
+        int[] last = new int[128];
+        for(int i = 0; i < 128; i++) {
+            last[i] = -1;
+        }
+        int n = s.length();
+
+        int res = 0;
+        int start = 0; // 窗口开始位置
+        for(int i = 0; i < n; i++) {
+            //字符转成ASCII码
+            int index = s.charAt(i);
+            start = Math.max(start, last[index] + 1);
+            res   = Math.max(res, i - start + 1);
+            last[index] = i;
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
-//        System.out.println(lengthOfLongestSubstring(""));
-//        System.out.println(getLength("abcabcbb"));
-//        System.out.println(getLength("abccbaaa"));
-//        System.out.println(getLength("aaaaa"));
-//        System.out.println(getLength(""));
-//        System.out.println(getLength(""));
+        System.out.println((int)'a');
+        System.out.println(lengthOfLongestSubstring(""));
+        System.out.println(getLength("abcabcbb"));
+        System.out.println(getLength("abccbaaa"));
+        System.out.println(getLength("aaaaa"));
+        System.out.println(getLength(""));
 
         System.out.println(lengthOfLastWord(null));
         System.out.println(lengthOfLastWord(" "));
         System.out.println(lengthOfLastWord("Hell "));
-        System.out.println(lengthOfLastWord("Hello world"));
+        System.out.println(lengthOfLastWord("Hello   world"));
+        System.out.println("tan   hua".replaceAll("\\s+", ""));
     }
 
 }
