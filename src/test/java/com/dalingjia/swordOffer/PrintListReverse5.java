@@ -29,7 +29,7 @@ public class PrintListReverse5 {
 
 	/**
 	 * 题目描述：输入一个链表的头结点，从尾到头反过来打印出每个结点的值.
-	 * @param args
+	 * @param
 	 */
 	//反转函数,利用Stack来解决
 	public static void reverse(LinkNode headNode){
