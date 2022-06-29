@@ -3,9 +3,9 @@ package com.dalingjia.LRU;
 import java.util.*;
 
 /**
+ * Leetcode 146 LRU 缓存机制
  * @author tanhq
  * @Description 写一个 LRU cache，get set delete 都在o(1)
- *              Leetcode 146 LRU 缓存机制
  * @Date 2019/10/25 上午12:08
  * @Version 1.0
  **/
@@ -15,6 +15,7 @@ public class LRUCache {
     public LinkedHashMap<Integer, Integer> map;
 
     public LRUCache(int capacity) {
+        //this不能少
         this.capacity = capacity;
         map = new LinkedHashMap<>();
     }
@@ -31,9 +32,9 @@ public class LRUCache {
     }
 
     public void put(int key, int value) {
-        if(map.containsKey(key)){
-            map.remove(key);
-        }
+        //先删除
+        map.remove(key);
+
         if(map.size() >= capacity){
             //删除集合中的第一个元素
             map.remove(map.keySet().iterator().next());
@@ -58,10 +59,17 @@ public class LRUCache {
         map.put(1, 1);
         map.put(2, 2);
         map.put(3, 3);
+        map.put(3, 4);
         Iterator<Integer> iterator = map.keySet().iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
+
+        String threadName = Thread.currentThread().getName();
+        System.out.println(threadName);
+
+        boolean timed = false || 3>2;
+        System.out.println(timed);
     }
 }
 

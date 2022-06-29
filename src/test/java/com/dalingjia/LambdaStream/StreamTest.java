@@ -74,6 +74,19 @@ public class StreamTest {
         /**
          * 15. collect()，收集方法，我们很常用的是collect(Collectors.toList())，当然还有 collect(Collectors.toSet()) 等，参数是一个收集器接口
          */
+        //Array转list
+        Integer[] arr = {2, 0, 4, 9, 3, 6, 8, 7, 1, 5, 3};
+        List<Integer> collect = Arrays.stream(arr).collect(Collectors.toList());
+        collect.forEach(System.out::println);
+
+        //list转array
+        ArrayList<String> list1 = new ArrayList<>();
+        list1.add("q");
+        list1.add("t");
+        list1.add("e");
+        String[] strings = new String[list1.size()];
+        String[] strings1 = list1.toArray(strings);
+        System.out.println(Arrays.toString(strings1));
 
     }
 }
