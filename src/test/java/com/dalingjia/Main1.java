@@ -17,7 +17,7 @@ public class Main1 {
         System.out.println(method(10));
         System.out.println(method(100));
         while (true) {
-            System.out.println(33);
+            System.out.println(3333);
         }
     }
 
