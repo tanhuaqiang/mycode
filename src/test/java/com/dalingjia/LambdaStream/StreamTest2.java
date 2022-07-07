@@ -29,6 +29,7 @@ public class StreamTest2 {
         list.add(new Person("jack", 20));
         list.add(new Person("mike", 25));
         list.add(new Person("tom", 30));
+        list.add(new Person("tan", 30));
 
         /**
          * int sum = list.stream().map(Person::getAge).reduce(0, Integer::sum);
@@ -98,7 +99,14 @@ public class StreamTest2 {
          * toMap
          */
         List newList = list.stream().collect(Collectors.toList());
-        list.stream().collect(Collectors.toMap(Person::getAge, Function.identity()));
+        //收集一下属性和对象本身
+        Map<Integer, Person> collect1 = list.stream().collect(Collectors.toMap(Person::getAge, Function.identity(), (v1 , v2) -> v2));
+
+        //收集一下集合中每个对象的两个单独的属性
+        //出现重复时，取前面value的值(或者取后面放入的value值)，则覆盖先前的value值
+        Map<Integer, String> collect2 = list.stream().collect(Collectors.toMap(Person::getAge, Person::getName, (v1, v2) -> v2));
+
+
 
         /**
          * 8, 汇总，计算年龄总和

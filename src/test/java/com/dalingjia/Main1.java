@@ -16,9 +16,15 @@ public class Main1 {
     public static void main(String[] args) {
         System.out.println(method(10));
         System.out.println(method(100));
-        while (true) {
-            System.out.println(44444);
-        }
+
+
+        List<Integer> list = new ArrayList<>();
+        list.add(3);
+        list.add(2);
+        list.add(1);
+        Collections.reverse(list);
+        list.add(4);
+        System.out.println(list);
     }
 
     /**
@@ -29,7 +35,7 @@ public class Main1 {
         int[] ints = new int[n];
         //初始化n个人
         for (int i = 0; i < ints.length; i++) {
-            ints[i] = i+1;
+            ints[i] = i + 1;
         }
         //用来计数1-3
         int temp = 0;
